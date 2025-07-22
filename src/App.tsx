@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "./hooks/useAuth";
+import { ThemeProvider } from "./hooks/useTheme";
 import Layout from "./components/Layout";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -54,30 +55,32 @@ const PublicRoute = ({ children }: { children: React.ReactNode }) => {
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <AuthProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            {/* Redirect root to dashboard */}
-            <Route path="/" element={<Navigate to="/dashboard" replace />} />
-            
-            {/* Public routes */}
-            <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
-            <Route path="/signup" element={<PublicRoute><Signup /></PublicRoute>} />
-            
-            {/* Protected routes */}
-            <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-            <Route path="/history" element={<ProtectedRoute><History /></ProtectedRoute>} />
-            <Route path="/portfolios" element={<ProtectedRoute><Portfolios /></ProtectedRoute>} />
-            
-            {/* Catch-all route */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              {/* Redirect root to dashboard */}
+              <Route path="/" element={<Navigate to="/dashboard" replace />} />
+              
+              {/* Public routes */}
+              <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
+              <Route path="/signup" element={<PublicRoute><Signup /></PublicRoute>} />
+              
+              {/* Protected routes */}
+              <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+              <Route path="/history" element={<ProtectedRoute><History /></ProtectedRoute>} />
+              <Route path="/portfolios" element={<ProtectedRoute><Portfolios /></ProtectedRoute>} />
+              
+              {/* Catch-all route */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
+      </AuthProvider>
+    </ThemeProvider>
   </QueryClientProvider>
 );
 

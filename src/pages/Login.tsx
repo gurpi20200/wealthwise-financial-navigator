@@ -8,6 +8,7 @@ import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
+import { ThemeToggle } from '../components/ThemeToggle';
 import { DollarSign, Loader2 } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
 
@@ -54,7 +55,12 @@ export default function Login() {
 
   return (
     <div className="min-h-screen bg-gradient-background flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
+      {/* Theme Toggle - Top Right */}
+      <div className="fixed top-4 right-4 z-50">
+        <ThemeToggle />
+      </div>
+      
+      <div className="w-full max-w-md">{/* ... keep existing code (logo and card content) */}
         {/* Logo */}
         <div className="flex items-center justify-center gap-2 mb-8">
           <div className="p-3 bg-gradient-primary rounded-xl">

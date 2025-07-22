@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { Button } from './ui/button';
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
+import { ThemeToggle } from './ThemeToggle';
 import { 
   LayoutDashboard, 
   TrendingUp, 
@@ -73,8 +74,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <NavItems />
             </nav>
 
-            {/* Desktop Logout */}
-            <div className="hidden md:flex items-center gap-4">
+            {/* Desktop Actions */}
+            <div className="hidden md:flex items-center gap-2">
+              <ThemeToggle />
               <Button
                 variant="ghost"
                 size="sm"
@@ -97,6 +99,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <div className="flex flex-col gap-4 mt-8">
                   <NavItems mobile />
                   <hr className="my-4" />
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-muted-foreground">Theme</span>
+                    <ThemeToggle />
+                  </div>
                   <Button
                     variant="ghost"
                     onClick={handleLogout}
